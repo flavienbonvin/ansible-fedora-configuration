@@ -4,17 +4,23 @@
     path: ./temp/jetbrains
     state: directory
   register: jetbrains_toolbox_download_dir
+  tags:
+    - jetbrains
 
 - name: Get available releases
   uri:
     url: https://data.services.jetbrains.com/products/releases?code=TBA&type=release
     method: GET
   register: json_response
+  tags:
+    - jetbrains
 
 - name: Download JetBrains Toolbox
   get_url:
     url: "{{ json_response.json.TBA[0].downloads.linux.link }}"
     dest: "{{ jetbrains_toolbox_download_dir.path }}/jetbrains-toolbox.tar.gz"
+  tags:
+    - jetbrains
 
 - name: Unpack install archive
   unarchive:
@@ -22,9 +28,10 @@
     dest: .
     list_files: yes
   register: jetbrains_toolbox_unarchive
-
-- debug:
-    msg: "{{ jetbrains_toolbox_unarchive.files | first }}/jet"
+  tags:
+    - jetbrains
 
 - name: Install JetBrains Toolbox
   command: "./{{ jetbrains_toolbox_unarchive.files | first }}jetbrains-toolbox"
+  tags:
+    - jetbrains

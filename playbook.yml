@@ -1,11 +1,11 @@
 ---
 # Full install
-#   laptop: ansible-playbook ansible.yml -K --skip-tags "desktop"
-#   workstation: ansible-playbook ansible.yml -K
+#   laptop: ansible-playbook playbook.yml -K --skip-tags "desktop"
+#   workstation: ansible-playbook playbook.yml -K
 
-# Install without Skype and slack
-#   laptop: ansible-playbook ansible.yml -K --skip-tags "desktop, flatpak-avoidable"
-#   workstation: ansible-playbook ansible.yml -K --skip-tags "flatpak-avoidable"
+# Install without Skype and Slack
+#   laptop: ansible-playbook playbook.yml -K --skip-tags "desktop, flatpak-avoidable"
+#   workstation: ansible-playbook playbook.yml -K --skip-tags "flatpak-avoidable"
 
 - hosts: localhost
   tasks:
@@ -26,4 +26,4 @@
     - name: Delete download directory
       file:
         path: temp
-        state: directory
+        state: absent

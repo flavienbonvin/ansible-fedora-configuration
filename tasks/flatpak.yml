@@ -1,12 +1,12 @@
 ---
 - name: Install flatpak
+  become: true
   dnf:
     name: "flatpak"
     state: present
   tags:
     - package
     - flatpak
-  become: true
 
 - name: Enable Flathub repository
   become: yes
