@@ -1,0 +1,52 @@
+---
+- name : Change theme to Adwaita-dark
+  dconf:
+    key: /org/gnome/desktop/interface/gtk-theme
+    value: "'Adwaita-dark'"
+  tags:
+    - gnome
+    - dconf
+
+- name: Enable Night Light
+  dconf:
+    key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
+    value: "true"
+  tags:
+    - gnome
+    - dconf
+
+- name: Change display of Nautilus to list
+  dconf:
+    key: /org/gnome/nautilus/preferences/default-folder-viewer
+    value: "'list-view'"
+  tags:
+    - gnome
+    - dconf
+    - nautilus
+
+- name: Display folder first in Nautilus
+  dconf:
+    key: /org/gtk/settings/file-chooser/sort-directories-first
+    value: "true"
+  tags:
+    - gnome
+    - dconf
+    - nautilus
+    
+- name: Change Gedit tab to spaces
+  dconf:
+    key: /org/gnome/gedit/preferences/editor/insert-spaces
+    value: "true"
+  tags:
+    - gnome
+    - dconf
+    - gedit
+
+- name: Change Gedit tab to 4
+  dconf:
+    key: /org/gnome/gedit/preferences/editor/tabs-size
+    value: uint32 4
+  tags:
+    - gnome
+    - dconf
+    - gedit

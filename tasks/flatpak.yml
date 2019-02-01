@@ -1,0 +1,78 @@
+---
+- name: Install flatpak
+  dnf:
+    name: "flatpak"
+    state: present
+  tags:
+    - package
+    - flatpak
+  become: true
+
+- name: Enable Flathub repository
+  become: yes
+  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+- name: Install Spotify flatpak
+  become: true
+  command: flatpak install --assumeyes flathub com.spotify.Client
+  tags:
+    - flatpak
+
+- name: Install Signal flatpak
+  become: true
+  command: flatpak install --assumeyes flathub org.signal.Signal
+  tags:
+    - flatpak
+
+- name: Install Skype flatpak
+  become: true
+  command: flatpak install --assumeyes flathub com.skype.Client
+  tags:
+    - flatpak
+    - flatpak-avoidable
+
+- name: Install Slack flatpak
+  become: true
+  command: flatpak install --assumeyes flathub com.slack.Slack
+  tags:
+    - flatpak
+    - flatpak-avoidable
+
+#Should works, but don't
+
+#- name: Add the flathub flatpak remote to the system installation
+#  flatpak_remote:
+#    name: flathub
+#    state: present
+#    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+#  tags:
+#    - flatpak
+#- name: Install Spotify flatpak
+#  flatpak:
+#    name: com.spotify.Client
+#    method: user
+#  tags:
+#    - flatpak
+
+#- name: Install Signal flatpak
+#  flatpak:
+#    name: org.signal.Signal
+#    method: user
+#  tags:
+#    - flatpak
+
+#- name: Install Skype flatpak
+#  flatpak:
+#    name: com.skype.Client
+#    method: user
+#  tags:
+#    - flatpak
+#    - flatpak-avoidable
+
+#- name: Install Slack flatpak
+#  flatpak:
+#    name: com.slack.Slack
+#    method: user
+#  tags:
+#    - flatpak
+#    - flatpak-avoidable

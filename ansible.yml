@@ -1,0 +1,29 @@
+---
+# Full install
+#   laptop: ansible-playbook ansible.yml -K --skip-tags "desktop"
+#   workstation: ansible-playbook ansible.yml -K
+
+# Install without Skype and slack
+#   laptop: ansible-playbook ansible.yml -K --skip-tags "desktop, flatpak-avoidable"
+#   workstation: ansible-playbook ansible.yml -K --skip-tags "flatpak-avoidable"
+
+- hosts: localhost
+  tasks:
+
+    - name: Creates download directory
+      file:
+        path: temp
+        state: directory
+
+    - include: tasks/repo.yml
+    - include: tasks/packages.yml
+    - include: tasks/flatpak.yml
+    - include: tasks/gnome.yml
+    - include: tasks/vscodium.yml
+    - include: tasks/jetbrain-toolbox.yml
+    - include: tasks/test.yml
+
+    - name: Delete download directory
+      file:
+        path: temp
+        state: directory

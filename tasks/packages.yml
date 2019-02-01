@@ -1,0 +1,48 @@
+---
+- name: Upgrade the system
+  become: true
+  dnf:
+    name: "*"
+    state: latest
+  tags:
+    - package
+    - update
+
+- name: Install base packages
+  become: yes
+  package:
+    name: [dialog, vrms-rpm, compat-ffmpeg28, langpacks-fr, neofetch, android-tools, adobe-source-code-pro-fonts, python3-psutil.x86_64]
+    state: present
+  tags:
+    - package
+    - dnf
+
+- name: Install programs
+  become: yes
+  package:
+    name: [gnome-tweaks, nautilus-dropbox, keepassxc, transmission]
+    state: present
+  tags:
+    - package
+    - dnf
+
+- name: Install latex packages
+  become: yes
+  package:
+    name: [texlive-scheme-basic, texlive-babel-french, texlive-hyphen-french, latexmk, texlive-collection-fontsrecommended, texlive-tablefootnote, texlive-wrapfig]
+    state: present
+  tags:
+    - package
+    - dnf
+    - latex
+
+- name: Instal workstation proprietary driver
+  become: yes
+  package:
+    name: [kernel-devel, kernel-headers, gcc, make, dkms, acpid, libglvnd-glx, libglvnd-opengl, libglvnd-devel, pkgconfig, broadcom-wl, kmod-wl]
+    state: present
+  tags:
+    - packages
+    - desktop
+    - dnf
+    - nonfree

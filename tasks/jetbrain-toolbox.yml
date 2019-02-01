@@ -1,0 +1,30 @@
+---
+- name: Creates download directory
+  file:
+    path: ./temp/jetbrains
+    state: directory
+  register: jetbrains_toolbox_download_dir
+
+- name: Get available releases
+  uri:
+    url: https://data.services.jetbrains.com/products/releases?code=TBA&type=release
+    method: GET
+  register: json_response
+
+- name: Download JetBrains Toolbox
+  get_url:
+    url: "{{ json_response.json.TBA[0].downloads.linux.link }}"
+    dest: "{{ jetbrains_toolbox_download_dir.path }}/jetbrains-toolbox.tar.gz"
+
+- name: Unpack install archive
+  unarchive:
+    src: "{{ jetbrains_toolbox_download_dir.path }}/jetbrains-toolbox.tar.gz"
+    dest: .
+    list_files: yes
+  register: jetbrains_toolbox_unarchive
+
+- debug:
+    msg: "{{ jetbrains_toolbox_unarchive.files | first }}/jet"
+
+- name: Install JetBrains Toolbox
+  command: "./{{ jetbrains_toolbox_unarchive.files | first }}jetbrains-toolbox"
