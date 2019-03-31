@@ -1,5 +1,5 @@
 ---
-- name: Upgrade the system
+- name: DNF | Upgrade the system
   become: true
   dnf:
     name: "*"
@@ -9,17 +9,17 @@
     - update
     - dnf
 
-- name: Install base packages
+- name: DNF | Install base packages
   become: yes
   package:
-    name: [dialog, vrms-rpm, compat-ffmpeg28, langpacks-fr, neofetch, android-tools, adobe-source-code-pro-fonts, python3-psutil.x86_64, java-openjdk, nodejs, npm, xclip]
+    name: [dialog, vrms-rpm, compat-ffmpeg28, langpacks-fr, neofetch, android-tools, adobe-source-code-pro-fonts, python3-psutil.x86_64, java-openjdk, nodejs, npm, xclip, zsh]
     state: present
   tags:
     - package
     - install-packages
     - dnf
 
-- name: Install programs
+- name: DNF | Install programs
   become: yes
   package:
     name: [gnome-tweaks, nautilus-dropbox, keepassxc, transmission, seahorse]
@@ -29,7 +29,7 @@
     - install-packages
     - dnf
 
-- name: Install latex packages
+- name: DNF | TEX | Install latex packages
   become: yes
   package:
     name: [texlive-scheme-basic, texlive-babel-french, texlive-hyphen-french, latexmk, texlive-collection-fontsrecommended, texlive-tablefootnote, texlive-wrapfig]
@@ -40,7 +40,7 @@
     - dnf
     - latex
 
-- name: Instal workstation proprietary driver
+- name: DNF | NVIDIA | Instal workstation proprietary driver
   become: yes
   package:
     name: [kernel-devel, kernel-headers, gcc, make, dkms, acpid, libglvnd-glx, libglvnd-opengl, libglvnd-devel, pkgconfig, broadcom-wl, kmod-wl]

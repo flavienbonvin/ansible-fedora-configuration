@@ -1,17 +1,32 @@
 ---
-- name: Change the hostname of the laptop
+- name: SYSTEM | Change the hostname of the laptop
   become: true
   hostname:
-    name: core-laptop
+    name: "{{ laptop_hostname }}"
   tags:
     - system
     - hostname
 
-- name: Change the hostname of the desktop workstation
+- name: SYSTEM | Change the hostname of the desktop workstation
   become: true
   hostname:
-    name: core-workstation
+    name: "{{ workstation_hostname }}"
   tags:
     - system
     - hostname
     - desktop
+
+- name: SYSTEM | Create working folder structure
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ ansible_env.HOME }}/Documents/work"
+    - "{{ ansible_env.HOME }}/Documents/work/web"
+    - "{{ ansible_env.HOME }}/Documents/work/android"
+    - "{{ ansible_env.HOME }}/Documents/work/web/php"
+    - "{{ ansible_env.HOME }}/Documents/work/other"
+    - "{{ ansible_env.HOME }}/Documents/git"
+  tags:
+    - system
+    - folder-structure

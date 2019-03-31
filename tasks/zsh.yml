@@ -1,0 +1,23 @@
+---
+- name: ZSH | Install ZSH package
+  become: yes
+  package:
+    name: [zsh, util-linux-user]
+    state: present
+  tags:
+    - package
+    - install-packages
+    - zsh
+    - dnf
+
+- name: ZSH | Clone oh-my-zsh repository
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
+    accept_hostkey: yes
+    update: yes
+
+- name: ZSH | Change user shell to zsh
+  become: yes
+  become_user: root
+  command: chsh -s /bin/zsh "{{ ansible_user }}"

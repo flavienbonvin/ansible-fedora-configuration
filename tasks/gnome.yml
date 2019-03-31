@@ -1,5 +1,5 @@
 ---
-- name : Change theme to Adwaita-dark
+- name : GNOME | Change theme to Adwaita-dark
   dconf:
     key: /org/gnome/desktop/interface/gtk-theme
     value: "'Adwaita-dark'"
@@ -7,7 +7,7 @@
     - gnome
     - dconf
 
-- name: Enable Night Light
+- name: GNOME | Enable Night Light
   dconf:
     key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
     value: "true"
@@ -15,7 +15,7 @@
     - gnome
     - dconf
 
-- name: Change display of Nautilus to list
+- name: GNOME | Change display of Nautilus to list
   dconf:
     key: /org/gnome/nautilus/preferences/default-folder-viewer
     value: "'list-view'"
@@ -24,7 +24,7 @@
     - dconf
     - nautilus
 
-- name: Display folder first in Nautilus
+- name: GNOME | Display folder first in Nautilus
   dconf:
     key: /org/gtk/settings/file-chooser/sort-directories-first
     value: "true"
@@ -33,7 +33,7 @@
     - dconf
     - nautilus
     
-- name: Change Gedit tab to spaces
+- name: GNOME | Change Gedit tab to spaces
   dconf:
     key: /org/gnome/gedit/preferences/editor/insert-spaces
     value: "true"
@@ -42,7 +42,7 @@
     - dconf
     - gedit
 
-- name: Change Gedit tab to 4
+- name: GNOME | Change Gedit tab to 4
   dconf:
     key: /org/gnome/gedit/preferences/editor/tabs-size
     value: uint32 4
@@ -50,3 +50,11 @@
     - gnome
     - dconf
     - gedit
+
+- name: GNOME | Disable screen autoration
+  dconf:
+    key: /org/gnome/eog/view autorotate
+    value: "false"
+  tags:
+    - gnome
+    - dconf

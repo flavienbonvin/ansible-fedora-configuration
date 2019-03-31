@@ -1,5 +1,5 @@
 ---
-- name: Add RPMFusion GPG key
+- name: RPMFusion | Add RPMFusion GPG key
   become: true
   rpm_key:
     state: present
@@ -8,7 +8,7 @@
     - repo
     - rpmfusion
 
-- name: Install RPMFusion free
+- name: RPMFusion | Install RPMFusion free
   become: true
   dnf:
     name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
@@ -18,7 +18,7 @@
     - rpmfusion
     - free
 
-- name: Install RPMFusion non-free
+- name: RPMFusion | Install RPMFusion non-free
   become: true
   dnf:
     name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
@@ -27,3 +27,22 @@
     - repo
     - rpmfusion
     - nonfree
+
+- name: DOCKER | Add Docker Repo GPG key
+  become: true
+  rpm_key:
+    state: present
+    key: "https://download.docker.com/linux/fedora/gpg"
+  tags:
+    - repo
+    - docker
+
+- name: DOCKER | Install docker repo
+  become: true
+  get_url:
+    url: "https://download.docker.com/linux/fedora/docker-ce.repo"
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: 0644
+  tags:
+    - repo
+    - docker

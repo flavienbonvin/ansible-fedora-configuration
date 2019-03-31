@@ -1,0 +1,39 @@
+---
+- name: DOCKER | Clean old or wrong packages
+  become: yes
+  package:
+    name: [docker, docker-client, docker-client-latest, docker-common, docker-latest, docker-latest-logrotate, docker-logrotate, docker-selinux, docker-engine-selinux, docker-engine]
+    state: absent
+  tags:
+    - package
+    - remove-packages
+    - docker
+
+- name: DOCKER | Install initial docker package
+  become: yes
+  package:
+    name: [dnf-plugins-core]
+    state: present
+  tags:
+    - package
+    - install-packages
+    - docker
+
+- name: DOCKER | Install docker packages
+  become: yes
+  package:
+    name:  [docker-ce, docker-ce-cli, containerd.io]
+    state: present
+  tags:
+    - package
+    - install-packages
+    - docker
+
+- name: DOCKER | Adding existing user to group docker
+  become: yes
+  user:
+    name: '{{ ansible_user }}'
+    groups: docker
+    append: yes
+  tags:
+    - docker

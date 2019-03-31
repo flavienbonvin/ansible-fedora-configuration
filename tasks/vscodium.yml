@@ -1,5 +1,5 @@
 ---
-- name: Get Information about latests VSCodium release
+- name: VSCODIUM | Get Information about latests VSCodium release
   uri: 
     url: https://api.github.com/repos/VSCodium/vscodium/releases/latest
     return_content: true
@@ -7,15 +7,14 @@
   tags:
     - vscodium
 
-- name: Download latest VSCodium release
+- name: VSCODIUM | Download latest VSCodium release
   get_url:
-    url: "{{ json_reponse.json.assets[4].browser_download_url }}"
-    dest: ./temp/vscodium.rpm
-  register: url
+    url: "{{ json_reponse.json.assets[0].browser_download_url }}"
+    dest: "{{ playbook_dir }}/temp/vscodium.rpm"
   tags:
     - vscodium
 
-- name: Installing latest VSCodium release
+- name: VSCODIUM | Installing latest VSCodium release
   become: true
   dnf:
     name: ./temp/vscodium.rpm
