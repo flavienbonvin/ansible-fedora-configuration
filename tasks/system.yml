@@ -24,9 +24,9 @@
     - "{{ ansible_env.HOME }}/Documents/work"
     - "{{ ansible_env.HOME }}/Documents/work/web"
     - "{{ ansible_env.HOME }}/Documents/work/android"
-    - "{{ ansible_env.HOME }}/Documents/work/web/php"
     - "{{ ansible_env.HOME }}/Documents/work/other"
     - "{{ ansible_env.HOME }}/Documents/git"
+    - "{{ ansible_env.HOME }}/Documents/dev"
   tags:
     - system
     - folder-structure
