@@ -22,9 +22,10 @@
     state: directory
   with_items:
     - "{{ ansible_env.HOME }}/Documents/work"
-    - "{{ ansible_env.HOME }}/Documents/work/web"
-    - "{{ ansible_env.HOME }}/Documents/work/android"
-    - "{{ ansible_env.HOME }}/Documents/work/other"
+    - "{{ ansible_env.HOME }}/Documents/work/dev"
+    - "{{ ansible_env.HOME }}/Documents/work/dev/web"
+    - "{{ ansible_env.HOME }}/Documents/work/dev/android"
+    - "{{ ansible_env.HOME }}/Documents/work/dev/other"
     - "{{ ansible_env.HOME }}/Documents/git"
     - "{{ ansible_env.HOME }}/Documents/dev"
   tags:
