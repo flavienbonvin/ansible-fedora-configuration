@@ -22,7 +22,7 @@
 - name: DNF | Install programs
   become: yes
   package:
-    name: [gnome-tweaks, nautilus-dropbox, keepassxc, transmission, seahorse]
+    name: [gnome-tweaks, nautilus-dropbox, keepassxc, transmission, seahorse, tilix]
     state: present
   tags:
     - package

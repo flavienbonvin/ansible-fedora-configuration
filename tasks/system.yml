@@ -26,7 +26,6 @@
     - "{{ ansible_env.HOME }}/Documents/work/dev/web"
     - "{{ ansible_env.HOME }}/Documents/work/dev/android"
     - "{{ ansible_env.HOME }}/Documents/work/dev/other"
-    - "{{ ansible_env.HOME }}/Documents/git"
     - "{{ ansible_env.HOME }}/Documents/dev"
   tags:
     - system

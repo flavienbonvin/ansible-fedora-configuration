@@ -16,8 +16,12 @@
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh"
     accept_hostkey: yes
     update: yes
+  tags:
+    - zsz
 
 - name: ZSH | Change user shell to zsh
   become: yes
   become_user: root
   command: chsh -s /bin/zsh "{{ ansible_user }}"
+  tags:
+    - zsz
